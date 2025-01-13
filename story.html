@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+            body {
+      text-align: center;
+      margin: 20px;
+      padding: 0;
+      background-color: bisque;
+    }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 300px);
+            grid-gap: 30px;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+            
+    }
+
+        .box {
+        width: 300px;
+        height: 400px;
+        background-color:white;
+        border: 2px solid #333;
+        border-radius: 10%;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        }
+        .i{
+      height: 300px;
+      width: 300px;
+      transform: translate(-50%, -50%);
+      align-items: center;
+      position: absolute;
+      top: 150px;
+      left: 150px;
+      border-radius: 10%;
+      /* display:none;  */
+    }
+    h1{
+        color: sienna;
+        font-size: 40px;
+        font-style: italic;
+
+    }
+    a{
+        position: absolute;
+        font-size: 30px;
+        margin-top: 300px;
+        margin-left: 30px;
+        display: block;
+         text-decoration: none;
+    }
+    
+    </style>
+</head>        
+<body>
+    <h1><u>STORY BOOK</u></h1><hr>
+    <div class="container">
+        
+        <div class="box"><img src="./novel2.webp" class="i" alt=""><br><a href="./storyone.html">Click to see the story</a></div>
+        <div class="box"><img src="./novel5.webp" class="i" alt=""><br><a href="./storytwo.html">Click to see the story</a></div>
+        <div class="box"><img src="./novel1.webp" class="i" alt=""><br><a href="./storythree.html">Click to see the story</a></div>
+        <div class="box"><img src="./novel3.webp" class="i" alt=""><br><a href="./storyfour.html">Click to see the story</a></div>
+       
+    </div>
+   
+   
+
+</body>
+</html>

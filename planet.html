@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+    <style>
+      body{
+           text-align: center;
+           padding: 20px;
+        }
+       .container{
+        width:90%;
+        display: flex;
+        justify-content: center;
+        gap: 20px; /* Space between images */
+       }
+       .planet{
+        text-align: center;
+       }
+       .planet img{
+        width: 100%;
+        max-width: 150px;
+        border-radius: 50%;
+       }
+       input[type="number"]{
+        width: 80%;
+        padding: 10px;
+        border: 1px solid lightblue;
+        border-radius: 5px;
+       }
+       button {
+        margin-top: 20px;
+        padding: 10px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        }
+        button:hover{
+            background-color: cornflowerblue ;
+        }
+        .result{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Planet Calculation</h2><br><hr>
+    <div class="container">
+       
+       <div class="planet" id=""><img src="./img1.webp" alt="" ><input type="number" id="one" onchange="calculate(event)"><p>EARTH</p></div>
+       <div class="planet"><img src="./im2.jpg" alt=""><input type="number" name="" id="two"  onchange="calculate(event)"><p>MOON</p></div>
+       <div class="planet"> <img src="./img3.jpg" alt=""><input type="number" name="" id="three"  onchange="calculate(event)"><p>JUPITER</p></div>
+       <div class="planet"> <img src="./img4.jpg" alt=""><input type="number" name="" id="four"  onchange="calculate(event)"><p>MARS</p></div>
+    </div>
+  
+    <script>
+        function calculate(event){
+            let earthWeight=parseFloat(document.getElementById("one").value) ||0;
+            let moonWeight=parseFloat(document.getElementById("two").vallue) ||0;
+            let jupiterWeight=parseFloat(document.getElementById("three").value) ||0;
+            let marsWeight=parseFloat(document.getElementById("four").value) ||0;
+            
+            const targetid=event.target.id;
+            console.log("id",targetid)
+
+            switch (targetid) {
+             case "one":
+          document.getElementById("two").value = 45;
+          document.getElementById("three").value = (earthWeight * 2.34).toFixed(2);
+          document.getElementById("four").value = (earthWeight * 0.38).toFixed(2);
+          break;
+        case "two":
+          const earthFromMoon = moonWeight / 0.166;
+          document.getElementById("one").value = earthFromMoon.toFixed(2);
+          document.getElementById("three").value = (earthFromMoon * 2.34).toFixed(2);
+          document.getElementById("four").value = (earthFromMoon * 0.38).toFixed(2);
+          break;
+        case "three":
+          const earthFromJupiter = jupiterWeight / 2.34;
+          document.getElementById("one").value = earthFromJupiter.toFixed(2);
+          document.getElementById("two").value = (earthFromJupiter * 0.166).toFixed(2);
+          document.getElementById("four").value = (earthFromJupiter * 0.38).toFixed(2);
+          break;
+        case "four":
+          const earthFromMars = marsWeight / 0.38;
+          document.getElementById("one").value = earthFromMars.toFixed(2);
+          document.getElementById("two").value = (earthFromMars * 0.166).toFixed(2);
+          document.getElementById("three").value = (earthFromMars * 2.34).toFixed(2);
+          break;
+      }  }
+    </script>
+</body>
+</html>

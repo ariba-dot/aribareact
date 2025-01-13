@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="updatepass" onsubmit="update(event)">
+       <fieldset>
+        <h2>Update Password</h2>
+        <br>
+        <label for="email">Email</label><br>
+        <input type="email" id="email" placeholder="enter email" required><hr>
+        <label for="new password">New Password</label><br>
+        <input type="text" id="pass" placeholder="enter password" required><hr>
+        <label for="confirm password">confirm Password</label><br>
+        <input type="text" id="newpass" placeholder="enter confirm password" required><hr>
+
+        <button type="submit" >Update Password</button>
+
+
+
+       </fieldset>
+
+    </form>
+    <span id="sp"></span>
+
+    <script>
+        function update(event){
+            event.preventDefault(); 
+        let password=document.getElementById("pass").value;
+        let newpassword=document.getElementById("newpass").value;
+        let email = document.getElementById("email").value;
+        console.log(newpassword);
+        console.log(password);
+        if(password===newpassword)
+        {
+            console.log("neter")
+            
+            let user = JSON.parse(localStorage.getItem("userDetails"));
+            if(user.email===email){
+            user.password= password;
+
+            }
+           localStorage.setItem("userDetails",JSON.stringify(user))
+
+          console.log("updated");
+          document.getElementById("sp").innerHTML="your password updated";
+          window.open("/logins.html");
+        }
+        else{
+            console.log("enter correct password");
+        }
+    }
+    </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+      justify-content: center;
+      height: 100vh; 
+      background-color: #f0f0f0;
+      border: 2px dotted green
+    }
+    .box0{
+      width: 200px;
+      height: 200px;
+      background-color: lightblue;
+      margin-bottom: 20px; 
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      font-size: 20px;
+      font-weight: bold;
+      border: 2px solid black;
+      text-align: center;
+    }
+    .box{
+      width: 80px;
+      height: 80px;
+      background-color: lightcoral;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: bold;
+      border: 2px solid black;
+      cursor: pointer;
+      transition:0.2s;
+    }
+    .container{
+        display: flex;
+        gap: 10px;
+    }
+    .box1{
+        background: lightcoral;
+    }
+    .box2{
+        background: yellow;
+    }
+    .box3{
+        background: lightgreen;
+    }
+    .box:hover{
+        transform: scale(1.1);
+    }
+
+
+    </style>
+</head>
+<body>
+    <div class="box0" id="box0">DARE!! change my color</div>
+    <div class="container">
+        <div class="box box1 " onclick="changeColor('lightcoral')">Click me</div>
+        <div class="box box2" onclick="changeColor('yellow')">Click me</div>
+        <div class="box box3" onclick="changeColor('lightgreen')">Click me</div>
+    </div>
+<script>
+    function changeColor(color){
+        const box0=document.getElementById('box0');
+        box0.style.backgroundColor=color;
+    }
+</script>
+</body>
+</html>

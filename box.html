@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+      justify-content: center;
+      height: 100vh; 
+      background-color: #f0f0f0;
+      border: 2px dotted green
+    }
+    #b0{
+      width: 200px;
+      height: 200px;
+      background-color: rgb(9, 116, 151);
+      color: aliceblue;
+      margin-bottom: 20px; 
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      font-size: 20px;
+      font-weight: bold;
+      border: 2px solid black;
+      text-align: center;
+    }
+    .box{
+      width: 80px;
+      height: 80px;
+      background-color: rgb(224, 77, 146);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: bold;
+      border: 2px solid black;
+      cursor: pointer;
+      transition:0.2s;
+    }
+    .container{
+        display: flex;
+        gap: 30px;
+    }
+    #b1{
+        background: black;
+        color: aliceblue;
+    }
+    #b2{
+        background: blue;
+    }
+    #b3{
+        background: pink;
+    }
+    .box:hover{
+        transform: scale(1.4);
+    }
+
+
+    
+    </style>
+</head>
+<body>
+    <div class="box" id="b0">change it</div>
+    <div class="container">
+        <div class="box" id="b1" onclick="process('black')">Black</div>
+        <div class="box" id="b2" onclick="process('blue')">blue</div>
+        <div class="box" id="b3" onclick="process('pink')">pink</div>
+    </div>
+    <script>
+        function process(n){
+            const box=document.getElementById("b0");
+            box.style.backgroundColor=n;
+        }
+    </script>
+</body>
+</html>

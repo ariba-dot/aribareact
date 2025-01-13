@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <title>Document</title>
+    <style>
+         input{
+            border: 1px solid pink;
+            margin-bottom: 5px;
+            text-align: center;
+         }
+         h1{
+            color: tomato;
+            text-align: center;
+         }
+         hr{
+            color: red;
+         }
+        
+    </style>
+    <h1>R E G I S T R A T I O N</h1>
+<hr/>
+</head>
+<body>
+    <form onsubmit="signup(event)">
+        <!-- <div class="container"> -->
+            
+        <input type="text" placeholder="Enter Username" id="name" required>
+        <br>
+        <input type="email" placeholder="Enter Email" id="email" required>
+        <br>
+        <input type="number" placeholder="Enter phone number" id="numb"   required><br>
+        <label for="male">Male</label>
+        <input type="radio" name="gender" id="male" value="male" checked>
+        <label for="female">Female</label>
+        <input type="radio" name="gender" id="female" value="female"><br>
+        <input type="text" placeholder="Enter College name" id="college_name"   required><br>
+        <input type="number" placeholder="Enter roll no" id="roll" required><br>
+        <input type="date" placeholder="Enter joining date" id="date"   ><br>
+        <input type="text" placeholder="Enter Coursename"  id="course" required><br>
+        <input type="text" placeholder="Enter Course type"  id="type" required><br>
+        <input type="password" placeholder="Enter password" id="paswd" >
+       
+        <button class="btn btn-danger" type="submit">signup</button>
+        <hr> 
+
+            not a member <a href="#"> signup? </a>    
+        <!-- </div>    -->
+            
+    </form>
+    <script>
+        function signup(event){
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("numb").value;
+           
+            const college = document.getElementById("college_name").value;
+            const rollNo = document.getElementById("roll").value;
+            const joining = document.getElementById("date").value;
+            const course = document.getElementById("course").value;
+            const type = document.getElementById("type").value;
+            const password = document.getElementById("paswd").value;
+
+            console.log("Form Details:", { name, email, phone, college, rollNo, joining, course, type, password });
+
+            alert("Your form is successfully submitted!");
+
+            // Optionally save data to localStorage
+            const userDetails = { name, email, phone,  college, rollNo, joining, course, type, password };
+            localStorage.setItem("userDetails", JSON.stringify(userDetails));
+        }
+
+    </script>
+</body>
+</html>

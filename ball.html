@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            height: 100vh;
+            width: 100vw;
+            background-color: violet;
+            position: relative;
+        }
+        .b{
+            border: 1px solid black;
+             color: white;
+             background-color: red;
+             border-radius: 50%;
+             position: absolute;
+             left: 30px;
+             top:50px;
+            height: 35px;
+            width: 35px;
+            transition:0.2s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" onclick="move()" id="box">
+        <div id="ball" class="b">play</div>
+    </div>
+    <script>
+        function move(){
+            const container=document.getElementById("box");
+            const ball=document.getElementById("ball");
+            
+            // Get the click position relative to the container
+        const clickX = event.clientX - container.offsetLeft;
+        const clickY = event.clientY - container.offsetTop;
+        const width = ball.clientWidth;
+        
+       
+        // Move the ball to the clicked position
+        ball.style.left = `${clickX - width/2}px `;
+        ball.style.top = `${clickY -width/2}px`;
+         
+        }
+    </script>
+</body>
+</html>

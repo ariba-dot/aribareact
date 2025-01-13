@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="loginForm" onsubmit="login(event)">
+      <fieldset>
+        <legend>Login Here</legend>
+        <input name="email" id="email" placeholder="Enter email" />
+        <input name="password" id="password" placeholder="Enter password" />
+        <button type="submit">Submit</button>
+        Forgot <a href="./pass.html"> password? </a> <br/>
+        not a member <a href="./log.html"> signup? </a>    
+
+      </fieldset>
+    </form>
+    <h1 id="result"></h1>
+    <script>
+      function login(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get form values (optional step to show usage)
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+
+        let user = JSON.parse(localStorage.getItem("userDetails"));
+
+        console.log("user==>", user);
+        if (email === user.email && password === user.password) {
+          document.getElementById("result").innerHTML =
+            "You are successfully logged in. Waiting for 2 seconds you be redirected to homepage";
+          setTimeout(() => {
+            window.location.href = "/profile.html";
+          }, 2000);
+
+        } else {
+          document.getElementById("result").innerHTML = "Invalid credentials";
+        }
+
+        console.log("Email:", email);
+        console.log("Password:", password);
+
+        // You can add further code here, like validation or sending data via AJAX
+      }
+    </script>
+  </body>
+</html>
