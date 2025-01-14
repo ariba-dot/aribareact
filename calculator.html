@@ -3,9 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
+    <title>Calculator</title>
+    <style>
+        
+        table { 
+    border: 1px solid rgb(118, 88, 250); 
+    border-style: dashed;
+    margin-left: auto; 
+    margin-right: auto ; 
+} 
+  
+input[type="button"] { 
+    width: 100%; 
+    padding: 20px 40px; 
+    background-color: rgb(234, 91, 253); 
+    color: rgb(252, 249, 249); 
+    font-size: 24px; 
+    font-weight: bold; 
+    border: none; 
+    border-style: dashed;
+    border-radius: 5px; 
+    margin: 2px;
+} 
+  
+input[type="text"] { 
+    padding: 20px 30px; 
+    font-size: 24px; 
+    font-weight: bold; 
+    border: none; 
+    border-radius: 5px; 
+    border: 2px solid rgb(252, 120, 223); 
+    color: rgb(230,10,193);
+} 
+h1{
+  text-align: center;  
+  text-decoration: dashed;
+  color: rgb(230, 10, 193);
+}
+    </style>
 </head>
 <body>
-    
+    <h1>---- C A L C U L A T O R ----</h1>
+    <div>
+        <table id="calcu"> 
+            <tr> 
+                <td colspan="3"> 
+                    <input type="text" id="result" readonly> 
+                </td> 
+                <td>
+                    <input type="button" value="Clear" id="clear" onclick="resetCalculator()">
+                </td>
+            </tr> 
+            <tr> 
+                <td><input type="button" value="1" onclick="process('1')"></td> 
+                <td><input type="button" value="2" onclick="process('2')"></td> 
+                <td><input type="button" value="3" onclick="process('3')"></td> 
+                <td><input type="button" value="+" onclick="process('+')"></td>
+            </tr> 
+            <tr> 
+                <td><input type="button" value="4" onclick="process('4')"></td> 
+                <td><input type="button" value="5" onclick="process('5')"></td> 
+                <td><input type="button" value="6" onclick="process('6')"></td> 
+                <td><input type="button" value="/" onclick="process('/')"></td>
+            </tr> 
+            <tr> 
+                <td><input type="button" value="7" onclick="process('7')"></td> 
+                <td><input type="button" value="8" onclick="process('8')"></td> 
+                <td><input type="button" value="9" onclick="process('9')"></td> 
+                <td><input type="button" value="*" onclick="process('*')"></td>
+            </tr> 
+            <tr> 
+                <td><input type="button" value="0" onclick="process('0')"></td> 
+                <td><input type="button" value="." onclick="process('.')"></td> 
+                <td><input type="button" value="=" onclick="calculate('=')"></td> 
+                <td><input type="button" value="-" onclick="process('-')"></td>
+            </tr> 
+        </table>
+    </div>
+
+    <script>
+        let currentValue = ''; // Stores the current input expression
+
+        // Function to handle number and operator button clicks
+        function process(value) {
+            currentValue += value; // Append the input value to the current expression
+            document.getElementById('result').value = currentValue; // Update the display
+        }
+
+        // Function to calculate the result
+        function calculate() {
+            try {
+                const result = math.evaluate(currentValue); // Evaluate the expression
+                document.getElementById('result').value = result; // Display the result
+                currentValue = result.toString(); // Update currentValue for further calculations
+            } catch (error) {
+                document.getElementById('result').value = 'Error'; // Display an error message for invalid input
+                currentValue = ''; // Reset the current value
+            }
+        }
+
+        // Function to clear the calculator
+        function resetCalculator() {
+            currentValue = ''; // Reset the current value
+            document.getElementById('result').value = ''; // Clear the display
+        }
+    </script>
 </body>
 </html>
