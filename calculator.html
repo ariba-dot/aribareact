@@ -84,13 +84,19 @@ h1{
 
     <script>
         let currentValue = ''; // Stores the current input expression
-
+        let equate=false; 
         // Function to handle number and operator button clicks
         function process(value) {
             currentValue += value; // Append the input value to the current expression
-            document.getElementById('result').value = currentValue; // Update the display
+           
+            if(equate){
+               document.getElementById("result").value=value;
+               equate=false;
         }
-
+        else{
+            document.getElementById('result').value = currentValue; 
+        }
+    }
         // Function to calculate the result
         function calculate() {
             try {
@@ -101,6 +107,7 @@ h1{
                 document.getElementById('result').value = 'Error'; // Display an error message for invalid input
                 currentValue = ''; // Reset the current value
             }
+            equate=true;
         }
 
         // Function to clear the calculator
