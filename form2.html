@@ -10,20 +10,43 @@
     <style>
         body {
             background-color: beige;
+            /* text-align: center;
+            justify-content: center; */
+        }
+
+        .delete {
+            background-color: seagreen;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-right: 50px;
+            border-radius: 5px;
         }
 
         button {
-            margin-top: 10px;
-            margin-left: 10px;
+            /* margin-top: 10px; */
+            margin-left: 150px;
             color: seagreen;
             border: 1px solid white;
+
+        }
+
+        #filter {
+            color: seagreen;
+            padding: 8px 16px;
+            border: 1px solid seagreen;
+            /* border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent; */
+            cursor: pointer;
         }
 
         .container {
-            margin-left: 20px;
-            /* border: 1px solid palevioletred;  */
-            height: 440px;
-            width: 50%;
+
+            /* border: 1px solid palevioletred;   */
+            height: 220px;
+            width: 300px;
+
+
         }
 
         input {
@@ -31,8 +54,8 @@
             margin-bottom: 10px;
             margin-left: 10px;
             margin-top: 10px;
-            width: 300px;
-            height: 30px;
+            width: 250px;
+            height: 25px;
             text-align: center;
             border-radius: 5px;
 
@@ -40,66 +63,83 @@
 
         h1 {
             color: seagreen;
+            text-align: center;
         }
 
         .form-control {
-            width: 340px;
+            width: 300px;
+
             background-color: rgb(60, 128, 94);
         }
 
         ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        ul li {
             border: 2px solid rgb(99, 170, 96);
             color: seagreen;
             border-collapse: collapse;
             height: auto;
-            width: 350px;
+            width: 99%;
             padding: 20px;
-            margin-left: 10px;
+            margin-left: 10px 0;
+            font-size: 22px;
         }
 
         h2 {
             color: seagreen;
+            text-align: center;
         }
 
         #search {
             background-color: aliceblue;
-            border: 3px solid seagreen;
+            border: 1px solid seagreen;
+            width: 99%;
+            height: 30px;
         }
     </style>
 </head>
 
 <body>
+    <h1>Student Details</h1>
     <div class="container ">
-        <h1>Student Details</h1>
         <form onsubmit="signup(event)" id="f" class="form-control ">
             <input type="text" placeholder="Enter Username" id="name" required>
             <br>
             <input type="number" placeholder="Enter age" id="age" required><br>
 
             <input type="number" placeholder="Enter grade" id="grade" required><br>
+
             <button class="btn btn-success" type="submit">submit</button>
             <br>
 
-        </form><br>
-        <h1>Search </h1>
-        <div><input type="text" id="search" placeholder="search by name " oninput="searchstu()" class="form-control">
-        </div>
-        <!-- <button class="btn btn-success" id="btn" onclick="searchstu()">Search</button> -->
-        <h1>Filter</h1>
-        <select name="select" id="filter">
-            <option value="80">80</option>
-            <option value="90">90</option>
-            <option value="60">60</option>
-            <option value="40">40</option>
-        </select>
-        <button class="btn btn-success" id="btn" onclick="filter()">Filter</button>
-        <h2>Store details
-        </h2>
-        <ul id="userList"></ul>
+        </form>
     </div>
-
+    <h1>Search </h1>
+    <div><input type="text" id="search" placeholder="search by name " oninput="searchstu()" class="form-control">
+    </div>
+    <!-- <button class="btn btn-success" id="btn" onclick="searchstu()">Search</button> -->
+    <h1>Filter</h1>
+    <select name="select" id="filter">
+        <option value="80">80</option>
+        <option value="90">90</option>
+        <option value="60">60</option>
+        <option value="40">40</option>
+    </select>
+    <button class="btn btn-success" id="btn" onclick="filter()">Filter</button>
+    <button class="btn btn-success" id="atoz" onclick="sorta()">Sort A-Z</button>
+    <button class="btn btn-success" id="ztoa" onclick="sortz()">Sort Z-A</button>
+    <button class="btn btn-success"  id=`${stu_data.stu_id}` onclick="clear(event)">Clear</button>
+    <button class="btn btn-success" id=`${stu_data.stu_id}` onclick="edit(event)">EDIT</button>
+    <h2>Store details
+    </h2>
+    <ul id="userList"></ul>
+    
     <script>
         let array = JSON.parse(localStorage.getItem("Students")) || [];
+        let currentYear = new Date().getFullYear();
         updateUserList();
 
         function signup(event) {
@@ -108,11 +148,13 @@
             const age = document.getElementById("age").value;
             const grade = document.getElementById("grade").value;
             console.log("Form Details:", { name, age, grade });
-            const studentdetails = { name, age, grade };
+            const studentdetails = { name, age, grade ,stu_id: `STU_${currentYear}-${String(
+            array.length + 1
+          ).padStart(6, "0")}`};
             array.push(studentdetails);
             // let studetails = JSON.parse(localStorage.getItem("students"));
             console.log(array);
-
+           
             localStorage.setItem("Students", JSON.stringify(array));
             updateUserList();
             document.getElementById("f").reset();
@@ -125,13 +167,18 @@
             const userList = document.getElementById('userList');
             userList.innerHTML = '';
 
-
+            let array = JSON.parse(localStorage.getItem("Students")) || [];
 
             // Loop through users array and display each user
             array.forEach((students, index) => {
                 const listItem = document.createElement('li');
-                listItem.textContent = `students ${index + 1}:  ${students.name}, Age: ${students.age}, grade: ${students.grade}`;
+                listItem.textContent = `students ${index + 1}:  ${students.name}, Age: ${students.age}, grade: ${students.grade},stu_id: ${students.stu_id}`;
+                const button=document.createElement("button")
+                 button.textContent ="delete";
+                 button.className = "delete";
+                 listItem.appendChild(button)
                 userList.appendChild(listItem);
+
             })
         }
         // searech student
@@ -157,16 +204,16 @@
             // Loop through users array and display each user
             emptyarray.forEach((students, index) => {
                 const listItem = document.createElement('li');
-                listItem.textContent = `students ${index + 1}:  ${students.name}, Age: ${students.age}, grade: ${students.grade}`;
+                listItem.textContent = `students ${index + 1}:  ${students.name}, Age: ${students.age}, grade: ${students.grade},stu_id: ${students.stu_id}`;
                 userList.appendChild(listItem);
             })
         }
         function filter() {
             let fil_value = document.getElementById("filter");
-            const filtervalue =  fil_value.value
-            
+            const filtervalue = fil_value.value
+
             let emparray = [];
-            
+
 
             array.forEach((students) => {
 
@@ -186,11 +233,84 @@
             // Loop through users array and display each user
             emparray.forEach((students, index) => {
                 const listItem = document.createElement('li');
-                listItem.textContent = `students ${index + 1}:  ${students.name}, Age: ${students.age}, grade: ${students.grade}`;
+                listItem.textContent = `students ${index + 1}:  ${students.name}, Age: ${students.age}, grade: ${students.grade},stu_id: ${students.stu_id}`;
                 userList.appendChild(listItem);
             })
         }
+        function sorta() {
+            // let sorted = array.sort();
+            // console.log("sorted");
+            // console.log(sorted)
+            let sortedarray = JSON.parse(localStorage.getItem("Students")) || [];
 
+            sortedarray.sort((a, b) => {
+                const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+                const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+                if (nameA < nameB) {
+                    return -1; console.log("first")
+                }
+                if (nameA > nameB) {
+                    return 1; ("second")
+                }
+                return 0;
+                console.log("third")
+            });
+            const userList = document.getElementById('userList');
+            userList.innerHTML = '';
+
+
+
+            // Loop through users array and display each user
+            sortedarray.forEach((students, index) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `students ${index + 1}:  ${students.name}, Age: ${students.age}, grade: ${students.grade},stu_id: ${students.stu_id}`;
+                userList.appendChild(listItem);
+            })
+        }
+        function sortz() {
+            // let sorted = array.sort();
+            // console.log("sorted");
+            // console.log(sorted)
+            let sorted = JSON.parse(localStorage.getItem("Students")) || [];
+
+            sorted.sort((a, b) => {
+                const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+                const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+                if (nameA > nameB) {
+                    return -1; console.log("first")
+                }
+                if (nameA < nameB) {
+                    return 1; ("second")
+                }
+                return 0;
+                console.log("third")
+            });
+            const userList = document.getElementById('userList');
+            userList.innerHTML = '';
+
+
+
+            // Loop through users array and display each user
+            sorted.forEach((students, index) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = ` students ${index + 1}:  ${students.name}, Age: ${students.age}, grade: ${students.grade},stu_id: ${students.stu_id}`;
+                userList.appendChild(listItem);
+            })
+        }
+        
+        function edit() {
+
+
+        }
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "Delete";
+      deleteButton.className = "delete";
+      deleteButton.onclick = function () {
+       userList.removeChild(li);
+       };
+
+      // Append delete button to list item
+      array.appendChild(deleteButton);
     </script>
 </body>
 
