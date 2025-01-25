@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blogs</title>
+    <style>
+      * {
+        padding: 0%;
+        margin: 0%;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      #container {
+        padding-top:2rem;
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+        background-color: rgb(62, 91, 248);
+        min-height: 100vh;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          308deg,
+          rgba(62, 91, 248, 1) 19%,
+          rgba(13, 228, 241, 1) 100%
+        );
+      }
+      .blog-card {
+        min-height: 300px;
+        min-width: 250px;
+        /* border: 1px solid black; */
+        box-shadow: 2px 2px 12px -2px black;
+        border-radius: 10px;
+        max-height: 450px;
+        max-width: 320px;
+        background-color: white;
+        transition: all 0.5s;
+      }
+
+      .blog-card:hover{
+        transform: scale(1.05);
+        transition: all 0.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+    
+    </div>
+
+    <!-- script -->
+
+    <script>
+      const blogs = [
+        {
+          title: "Exploring JavaScript Closures",
+          headerImage: "https://media.istockphoto.com/id/1363405922/photo/big-data-concept-digital-neural-network-business-woman-hand-touching-introduction-of.jpg?s=612x612&w=0&k=20&c=RalKiggho8m_33tXSMceal_0wmkFSPk1EPH-7o76N6Y=",
+          blogContent:
+            "In this blog post, we dive deep into the concept of closures in JavaScript, explaining how they work and how you can use them to write more efficient and readable code.",
+          writerName: "Alice Johnson",
+        },
+        {
+          title: "Understanding Asynchronous JavaScript",
+          headerImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDRKPVRmGq81wOdqnnKBFwtQBJaTVHa7KhMQ&s",
+          blogContent:
+            "Asynchronous JavaScript can be tricky to grasp. This article walks through the key concepts like callbacks, promises, and async/await, with practical examples.",
+          writerName: "Bob Smith",
+        },
+        {
+          title: "Design Patterns in React",
+          headerImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR10TigOVAIqA0rXQe4ReLGL4-7sIj7kTCPwA&s",
+          blogContent:
+            "Learn about various design patterns that can be used to structure React applications for scalability and maintainability. We’ll cover container-presentational components, hooks, and more.",
+          writerName: "Charlie Davis",
+        },
+        {
+          title: "The Future of Web Development",
+          headerImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQERxH9EDb5aZ3h_FwdCEk5YzlEmleVCFoS2Q&s",
+          blogContent:
+            "In this post, we discuss emerging trends in web development, including WebAssembly, serverless architectures, and the rise of JAMstack.",
+          writerName: "Dana Lee",
+        },
+        {
+          title: "CSS Grid Layout: A Comprehensive Guide",
+          headerImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTg5KDvmtkC9SLrASU_NjwBBUEtDHrRm-gpA&s",
+          blogContent:
+            "CSS Grid is a powerful tool for creating flexible and responsive layouts. This guide covers everything from the basics to advanced concepts to help you master CSS Grid.",
+          writerName: "Eve Green",
+        },
+        {
+          title: "Mastering Node.js for Backend Development",
+          headerImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdGblMMyDkR7X9ayiTCguObSri0R514XTyew&s",
+          blogContent:
+            "This article explores the best practices for building scalable backend applications with Node.js, from setting up a server to managing databases.",
+          writerName: "Frank White",
+        },
+        {
+          title: "Introduction to Machine Learning Algorithms",
+          headerImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8eibzD0pmj9jYUfmnoG3KdPIYEEBqZMEQdw&s",
+          blogContent:
+            "Machine learning is transforming industries. Learn the fundamentals of machine learning algorithms, including linear regression, decision trees, and neural networks.",
+          writerName: "Grace Black",
+        },
+        {
+          title: "Building a Portfolio with HTML, CSS, and JavaScript",
+          headerImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVWpRcn2KUDWKJU2z0jtHUUEw0_fyD57IFgA&s",
+          blogContent:
+            "In this tutorial, we’ll guide you through the steps to create a professional web development portfolio using just HTML, CSS, and JavaScript.",
+          writerName: "Henry Thomas",
+        },
+        {
+          title: "Web Accessibility: Making Your Site Inclusive",
+          headerImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFdjOW75TX96VOuYHX1lD_XkVErDEJ_7LPpw&s",
+          blogContent:
+            "In this post, we discuss the importance of web accessibility and how to make your website accessible to all users, including those with disabilities.",
+          writerName: "Ivy Adams",
+        },
+      ];
+
+        function displayBlogCards() {
+          const blogContainer = document.getElementById("container");
+
+          let blogHtml = "";
+
+          blogs.forEach((blog) => {
+            blogHtml += `
+             <div class="blog-card">
+          <img
+            style="width: 100%; height: 200px; border-radius: 10px 10px 0px 0px"
+            alt="blog image"
+            src="${blog.headerImage}"
+          />
+          <div style="padding: 1rem">
+            <h4>${blog.title}</h4>
+            <br />
+            <p>
+              ${blog.blogContent}
+            </p>
+            <div>
+              <br />
+              <p><i style="color: grey;" >${blog.writerName}</i></p>
+            </div>
+          </div>
+        </div>
+            `;
+          });
+
+          blogContainer.innerHTML = blogHtml;
+        }
+
+        displayBlogCards()
+    </script>
+  </body>
+</html>
